@@ -51,7 +51,18 @@ print(f"Total Months =  {Month_ct}")
 print(f"Total = ${Total}")
 print(f"Average Monthly Change = ${avgChange}")
 print(f"Greatest Increase in Profits: {maxMonth} (${maxchange})")
-print(f"Greatest Decrease om Profits: {minMonth} (${minchange})")
+print(f"Greatest Decrease in Profits: {minMonth} (${minchange})")
+
+outpath = "Analysis/Budget_Analysis.csv"
+with open(outpath,'w',newline='') as csvfile :
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(["Financial Analysis"])
+    csvwriter.writerow(["-------------------------"])
+    csvwriter.writerow(["Total Months = ",Month_ct])
+    csvwriter.writerow(["Total = ",Total])
+    csvwriter.writerow(["Average Monthly Chage = ",avgChange])
+    csvwriter.writerow(["Greatest Increase in Profits: ",maxMonth,maxchange])
+    csvwriter.writerow(["Greatest Decrease in Profits: ",minMonth,minchange])
 
 
 
