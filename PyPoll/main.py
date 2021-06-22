@@ -18,7 +18,7 @@ with open(filepath) as election :
     datalist = csv.reader(election, delimiter=',')
   
     csv_header = next(datalist)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
     
     for row in datalist:
         Total_Votes = Total_Votes + 1
@@ -27,11 +27,8 @@ with open(filepath) as election :
             candidates.append((row[2]))
 
 
-print(f"Total Votes = {Total_Votes}")
 
 tv = format(Total_Votes,",")
-print(tv)
-
 
 for  name in candidates:
     tally.update({name:Votes.count(name)})
@@ -45,25 +42,34 @@ for  name in candidates:
     Cand_v_count.append(fmt_vcount)
     Cand_v_percent.append(fmt_percent_count)
 
-
     if vcount > maxcount :
         maxcount = vcount
         winner = name
-   
- #   print(fmt_vcount)
- #   print(fmt_percent_count)
- #   print(f"{name} {vcount}, {percent_count}")
-print("Winner is " + winner)
+  
+
 vote_tally = zip(Cand_w_votes,Cand_v_count,Cand_v_percent)
-#print(vote_tally)
 
+outpath = "Analysis/Election_Results.csv"
+with open(outpath,'w',newline='') as csvfile :
+    csvwriter = csv.writer(csvfile, delimiter=',')
+    csvwriter.writerow(["Election Results:"])
+    csvwriter.writerow(["---------------------------------"])
+    csvwriter.writerow(["Total Votes = ",tv])
+    csvwriter.writerow(["The winner is ",winner])
+    csvwriter.writerow(["---------------------------------"])
+    csvwriter.writerow(["Candidate","Vote Count","Percent of Total"])
+    csvwriter.writerows(vote_tally)
+    
+print("Election Results:")
+print("---------------------------------")
+print(f"Total Votes = {tv}")
+print("The winner is " + winner)
+print("---------------------------------")
 
+vote_tally = zip(Cand_w_votes,Cand_v_count,Cand_v_percent)
 for row in vote_tally:
     print(row[0],row[1],row[2])
-
-#print(tally)
-#x = tally["Khan"]
-#print(x)
+print("=================================")
 
 
 
