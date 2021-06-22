@@ -9,7 +9,6 @@ Cand_w_votes = []
 Cand_v_count = []
 Cand_v_percent = []
 vote_tally = []
-tally = {}
 vcount = 0
 maxcount = 0
 percent_count = 0.0
@@ -68,7 +67,7 @@ print(f"Total Votes = {tv}")
 print("The winner is " + winner)
 print("---------------------------------")
 
-# Zip lists of candidate names, votes and percentage again to print to terminal.
+# Zip lists of candidate names, votes and percentages again to print to terminal.
 vote_tally = zip(Cand_w_votes,Cand_v_count,Cand_v_percent)
 for row in vote_tally:
     print(row[0],row[1],row[2])
