@@ -4,9 +4,12 @@ import csv
 Total_Votes = 0
 candidates = []
 Votes = []
-x = 0
-y = 0
-j = 0
+tally = {}
+vcount = 0
+maxcount = 0
+percent_count = 0.0
+
+
 
 
 filepath = "Resources/election_data.csv"
@@ -15,9 +18,7 @@ with open(filepath) as election :
   
     csv_header = next(datalist)
     print(f"CSV Header: {csv_header}")
-    #first = next(datalist)
-    #print(first[2])
-
+    
     for row in datalist:
         Total_Votes = Total_Votes + 1
         Votes.append(row[2])
@@ -25,22 +26,24 @@ with open(filepath) as election :
             candidates.append((row[2]))
 
 
-
 print(f"Total Votes = {Total_Votes}")
 
-x = len(candidates)
-print(x)
 for  name in candidates:
-    print(name)
+    tally.update({name:Votes.count(name)})
+    vcount = Votes.count(name)
+    percent_count = (vcount / Total_Votes) * 100
+    if vcount > maxcount :
+        maxcount = vcount
+        winner = name
+    
+    print(f"{name} {vcount}, {percent_count}")
+print("Winner is " + winner)
 
 
-j = len(Votes)
-print(j)
 
-
-
-y = candidates.count('Khan')
-print(y)
+print(tally)
+x = tally["Khan"]
+print(x)
 
 
 
